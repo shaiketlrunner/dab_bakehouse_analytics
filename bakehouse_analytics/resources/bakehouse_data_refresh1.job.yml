@@ -3,7 +3,7 @@
 resources:
   jobs:
     bakehouse_data_refresh:
-      name: bakehouse_data_refresh
+      name: bakehouse_data_refresh1
 
       trigger:
         # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
