@@ -22,27 +22,15 @@ resources:
           default: ${var.schema}
 
       tasks:
-<<<<<<< Updated upstream
-        - task_key:customer-360
+        - task_key: customer-360
           notebook_task:
             notebook_path: ../src/customer_360.ipynb
-
-      - task_key: transactions_summary
+        - task_key: transaction_summary
           depends_on:
-            - task_key: customer_360
-          notebook_task:
-            notebook_path: ../src/transactions_summary.ipynb
-
-=======
-        - notebook_task:
-            notebook_path: ../src/customer_360.ipynb
-          task_key: customer-360
-        - depends_on:
             - task_key: customer-360
           notebook_task:
             notebook_path: ../src/transaction_summary.ipynb
-          task_key: transaction_summary
->>>>>>> Stashed changes
+
       environments:
         - environment_key: default
           spec:
