@@ -49,4 +49,6 @@ resources:
       environments:
         - environment_key: default
           spec:
-            environment_version: "4"
+            client: "1"
+            dependencies:
+              - "../../dist/*.whl"
