@@ -23,13 +23,28 @@ resources:
 
       tasks:
         - task_key: customer-360
-          notebook_task:
-            notebook_path: ../src/customer_360.ipynb
-        - task_key: transaction_summary
+          environment_key: default
+          python_wheel_task:
+            package_name: bakehouse_analytics
+            entry_point: main
+            parameters:
+              - "--catalog"
+              - "{{job.parameters.catalog}}"
+              - "--schema"
+              - "{{job.parameters.schema}}"
+
+        - task_key: transactions_summary
+          environment_key: default
           depends_on:
             - task_key: customer-360
-          notebook_task:
-            notebook_path: ../src/transaction_summary.ipynb
+          python_wheel_task:
+            package_name: bakehouse_analytics
+            entry_point: main
+            parameters:
+              - "--catalog"
+              - "{{job.parameters.catalog}}"
+              - "--schema"
+              - "{{job.parameters.schema}}"
 
       environments:
         - environment_key: default
