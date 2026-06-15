@@ -1,0 +1,29 @@
+name: Production deployment
+
+concurrency: 1
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'bakehouse_analytics/**'
+
+jobs:
+  deploy:
+    name: Deploy bundle
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Deploy bundle
+        working-directory: bakehouse_analytics
+        run: databricks bundle deploy
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
+          DATABRICKS_BUNDLE_ENV: prod
