@@ -23,15 +23,6 @@ resources:
 
       tasks:
         - task_key: customer-360
-<<<<<<< Updated upstream
-          notebook_task:
-            notebook_path: ../src/customer_360.ipynb
-        - task_key: transaction_summary
-          depends_on:
-            - task_key: customer-360
-          notebook_task:
-            notebook_path: ../src/transaction_summary.ipynb
-=======
           environment_key: default
           python_wheel_task:
             package_name: bakehouse_analytics
@@ -41,8 +32,6 @@ resources:
               - "{{job.parameters.catalog}}"
               - "--schema"
               - "{{job.parameters.schema}}"
-          libraries:
-            - whl: ../dist/*.whl
 
         - task_key: transactions_summary
           environment_key: default
@@ -56,9 +45,6 @@ resources:
               - "{{job.parameters.catalog}}"
               - "--schema"
               - "{{job.parameters.schema}}"
-          libraries:
-            - whl: ../dist/*.whl
->>>>>>> Stashed changes
 
       environments:
         - environment_key: default
